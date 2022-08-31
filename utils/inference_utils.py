@@ -38,7 +38,7 @@ def run_on_batch(inputs, net, opts, avg_image):
                 y_hat = y_hat[:, :, 32:224, :]
             else:
                 y_hat = y_hat[:, :, 64:448, :]
-
+        print("y_hat[0]:",y_hat[0],"latent[0]:",latent[0])
         # store intermediate outputs
         for idx in range(inputs.shape[0]):
             results_batch[idx].append(y_hat[idx])
@@ -49,5 +49,5 @@ def run_on_batch(inputs, net, opts, avg_image):
             y_hat = torch.nn.AdaptiveAvgPool2d((192, 256))(y_hat)
         else:
             y_hat = net.face_pool(y_hat)
-        print("ifr4_results_batch.shape:",results_batch.shape,"results_latent.shape:",results_latent.shape)
+        print("ifr4_results_batch.keys:",results_batch.keys(),"results_latent.keys():",results_latent.keys())
     return results_batch, results_latent
