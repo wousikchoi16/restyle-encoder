@@ -38,7 +38,7 @@ def run_on_batch(inputs, net, opts, avg_image):
                 y_hat = y_hat[:, :, 32:224, :]
             else:
                 y_hat = y_hat[:, :, 64:448, :]
-        print("y_hat[0]:",y_hat[0],"latent[0]:",latent[0])
+        print("y_hat[0].shape:",y_hat[0].shape,"latent[0].shape:",latent[0].shape)
         # store intermediate outputs
         for idx in range(inputs.shape[0]):
             results_batch[idx].append(y_hat[idx])
