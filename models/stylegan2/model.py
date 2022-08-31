@@ -516,12 +516,12 @@ class Generator(nn.Module):
             latent2 = styles[1].unsqueeze(1).repeat(1, self.n_latent - inject_index, 1)
 
             latent = torch.cat([latent, latent2], 1)
-
+        print("latent1:",latent.shape)
         out = self.input(latent)
         out = self.conv1(out, latent[:, 0], noise=noise[0])
-
+        print("out.shape:",out.shape)
         skip = self.to_rgb1(out, latent[:, 1])
-
+        print("skip.shape:",skip.shape)
         i = 1
         for conv1, conv2, noise1, noise2, to_rgb in zip(
                 self.convs[::2], self.convs[1::2], noise[1::2], noise[2::2], self.to_rgbs
@@ -533,7 +533,7 @@ class Generator(nn.Module):
             i += 2
 
         image = skip
-
+        print("image.shape:",image.shape)
         if return_latents:
             return image, latent
         elif return_features:
