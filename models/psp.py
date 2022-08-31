@@ -98,7 +98,7 @@ class pSp(nn.Module):
         self.opts = opts
 
     def __load_latent_avg(self, ckpt, repeat=None):
-        print("ckpt['latent_avg']:", ckpt['latent_avg'])
+        print("ckpt['latent_avg'].shape:", ckpt['latent_avg'].shape)
         if 'latent_avg' in ckpt:
             self.latent_avg = ckpt['latent_avg'].to(self.opts.device)
             if repeat is not None:
