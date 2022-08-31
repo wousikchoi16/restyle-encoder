@@ -112,6 +112,7 @@ class pSp(nn.Module):
             # Transfer the RGB input of the irse50 network to the first 3 input channels of pSp's encoder
             if self.opts.input_nc != 3:
                 shape = encoder_ckpt['input_layer.0.weight'].shape
+                print("shape1:",shape,"shape[0]:")
                 altered_input_layer = torch.randn(shape[0], self.opts.input_nc, shape[2], shape[3], dtype=torch.float32)
                 altered_input_layer[:, :3, :, :] = encoder_ckpt['input_layer.0.weight']
                 encoder_ckpt['input_layer.0.weight'] = altered_input_layer
