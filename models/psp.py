@@ -60,13 +60,17 @@ class pSp(nn.Module):
             codes = x
         else:
             codes = self.encoder(x)
+            print("codes0:",codes.shape)
             # residual step
+            print("codes1:",codes.shape)
             if x.shape[1] == 6 and latent is not None:
                 # learn error with respect to previous iteration
                 codes = codes + latent
+                print("codes2:",codes.shape, "latent:", latent.shape)
             else:
                 # first iteration is with respect to the avg latent code
                 codes = codes + self.latent_avg.repeat(codes.shape[0], 1, 1)
+                print("codes3:",codes.shape)
 
         if latent_mask is not None:
             for i in latent_mask:
@@ -82,7 +86,7 @@ class pSp(nn.Module):
             input_is_latent = True
         else:
             input_is_latent = (not input_code) or (input_is_full)
-
+        print("codes4:",codes.shape,"input_is_latent:T:",input_is_latent,"randomize_noise:F:",randomize_noise,"return_latents:F:",return_latents)
         images, result_latent = self.decoder([codes],
                                              input_is_latent=input_is_latent,
                                              randomize_noise=randomize_noise,
