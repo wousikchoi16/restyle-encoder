@@ -141,5 +141,5 @@ class pSp(nn.Module):
             d = d['state_dict']
         print("d2:",d,"name:",name, "len(name):",len(name))
         d_filt = {k[len(name) + 1:]: v for k, v in d.items() if k[:len(name)] == name}
-        print("d_filt:",d_filt)
+#         print("d_filt:",d_filt)
         return d_filt
