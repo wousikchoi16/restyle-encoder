@@ -136,10 +136,8 @@ class pSp(nn.Module):
 
     @staticmethod
     def __get_keys(d, name):
-        print("d1:",d,"name:",name, "len(name):",len(name))
+        print("d.keys():",d.keys(),"name:",name, "len(name):",len(name))
         if 'state_dict' in d:
             d = d['state_dict']
-        print("d2:",d,"name:",name, "len(name):",len(name))
         d_filt = {k[len(name) + 1:]: v for k, v in d.items() if k[:len(name)] == name}
-#         print("d_filt:",d_filt)
         return d_filt
