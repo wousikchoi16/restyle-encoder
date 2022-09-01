@@ -54,6 +54,11 @@ class pSp(nn.Module):
             self.decoder.load_state_dict(ckpt['g_ema'], strict=True)
             self.__load_latent_avg(ckpt, repeat=self.n_styles)
 
+    def make_image_from_latent(self,x,randomize_noise=False, return_latents=False,input_is_latent=True):
+        codes = x # tensor([1,18,512])
+        images, result_latent = self.decoder([codes],input_is_latent=input_is_latent,randomize_noise=randomize_noise, return_latents=return_latents)
+        return images,result_latent
+        
     def forward(self, x, latent=None, resize=True, latent_mask=None, input_code=False, randomize_noise=True,
                 inject_latent=None, return_latents=False, alpha=None, average_code=False, input_is_full=False):
         if input_code:
