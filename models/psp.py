@@ -100,7 +100,7 @@ class pSp(nn.Module):
 
         if resize:
             images = self.face_pool(images)
-            print("pspforward_images.shape:",images.shape)
+            # print("pspforward_images.shape:",images.shape)
         if return_latents:
             return images, result_latent
         else:
