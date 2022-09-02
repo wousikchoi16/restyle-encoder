@@ -153,6 +153,7 @@ class pSp(nn.Module):
     def __get_keys(d, name):
         # print("d.keys():",d.keys(),"name:",name, "len(name):",len(name))
         # d.keys(): dict_keys(['state_dict', 'opts', 'latent_avg']) name: encoder len(name): 7
+        print("type(d['state_dict']):",type(d['state_dict']), "d['state_dict'].keys():",d['state_dict'].keys() )
         if 'state_dict' in d:
             d = d['state_dict']
         d_filt = {k[len(name) + 1:]: v for k, v in d.items() if k[:len(name)] == name}
