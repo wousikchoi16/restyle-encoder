@@ -44,7 +44,7 @@ class pSp(nn.Module):
             ckpt = torch.load(self.opts.checkpoint_path, map_location='cpu')
             # print("self.__get_keys(ckpt, 'encoder'):",self.__get_keys(ckpt, 'encoder'))
             # print("self.__get_keys(ckpt, 'decoder'):",self.__get_keys(ckpt, 'decoder'))
-            self.encoder.load_state_dict(self.__get_keys(ckpt, 'encoder'), strict=False)
+            self.encoder.load_state_dict(self.__get_keys(ckpt, 'encoder'), strict=False) # self.__get_keys(ckpt, 'decoder') dictionary
             self.decoder.load_state_dict(self.__get_keys(ckpt, 'decoder'), strict=True)
             self.__load_latent_avg(ckpt)
         else:
