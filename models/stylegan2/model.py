@@ -533,7 +533,7 @@ class Generator(nn.Module):
             i += 2
 
         image = skip
-        print("image.shape:",image.shape)
+        # print("image.shape:",image.shape)
         if return_latents:
             return image, latent
         elif return_features:
