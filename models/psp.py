@@ -42,8 +42,8 @@ class pSp(nn.Module):
             print("upperline code")
             print(f'Loading ReStyle pSp from checkpoint: {self.opts.checkpoint_path}')
             ckpt = torch.load(self.opts.checkpoint_path, map_location='cpu')
-            print("self.__get_keys(ckpt, 'encoder'):",self.__get_keys(ckpt, 'encoder'))
-            print("self.__get_keys(ckpt, 'decoder'):",self.__get_keys(ckpt, 'decoder'))
+            # print("self.__get_keys(ckpt, 'encoder'):",self.__get_keys(ckpt, 'encoder'))
+            # print("self.__get_keys(ckpt, 'decoder'):",self.__get_keys(ckpt, 'decoder'))
             self.encoder.load_state_dict(self.__get_keys(ckpt, 'encoder'), strict=False)
             self.decoder.load_state_dict(self.__get_keys(ckpt, 'decoder'), strict=True)
             self.__load_latent_avg(ckpt)
@@ -151,7 +151,7 @@ class pSp(nn.Module):
 
     @staticmethod
     def __get_keys(d, name):
-        # print("d.keys():",d.keys(),"name:",name, "len(name):",len(name))
+        print("d.keys():",d.keys(),"name:",name, "len(name):",len(name))
         if 'state_dict' in d:
             d = d['state_dict']
         d_filt = {k[len(name) + 1:]: v for k, v in d.items() if k[:len(name)] == name}
